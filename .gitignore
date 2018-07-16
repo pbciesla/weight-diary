@@ -1,0 +1,4 @@
+venv/
+.idea/
+weight_saver.db
+__pycache__/
