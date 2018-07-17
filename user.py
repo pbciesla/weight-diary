@@ -1,3 +1,6 @@
+from weight_storage import save_weight
+
+
 class User:
     def __init__(self, name, height, weight, user_id=None):
         self.name = name
@@ -13,3 +16,4 @@ class User:
     def update_weight(self):
         new_weight = float(input("Enter your weight (in kg): "))
         self.weight = new_weight
+        save_weight(new_weight, self.id)

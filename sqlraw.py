@@ -24,7 +24,7 @@ cur.executescript("""
     CREATE TABLE IF NOT EXISTS user_weight_data (
         id INTEGER PRIMARY KEY autoincrement,
         date datetime NOT NULL,
-        weight float NOT NULL,
+        value float NOT NULL,
         user_id INTEGER NOT NULL,
         FOREIGN KEY(user_id) REFERENCES users(id)
     )""")
