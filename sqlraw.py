@@ -14,7 +14,7 @@ cur.execute("DROP TABLE IF EXISTS users;")
 cur.execute("""
     CREATE TABLE IF NOT EXISTS users (
         id INTEGER PRIMARY KEY autoincrement,
-        name varchar(250) NOT NULL,
+        name text NOT NULL,
         height float NOT NULL,
         weight float NOT NULL
     )""")

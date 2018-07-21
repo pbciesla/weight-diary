@@ -35,17 +35,21 @@ def fetch_by_name(user_name):
         return None
 
 
-def save(user):
+def save_user(user):
     user_data = (user.name, user.height, user.weight)
     cur.execute('INSERT INTO users VALUES(NULL, ?, ?, ?);', user_data)
     con.commit()
 
 
-def update(user):
+def update_user(user):
     cur.execute('UPDATE users SET weight=? WHERE id=?', (user.weight, user.id))
     con.commit()
 
 
-def delete(user_id):
+def delete_user(user_id):
     cur.execute('DELETE FROM users WHERE id=?', (user_id,))
     con.commit()
+    # cur.execute('SELECT max(id) FROM  users')  # Why its return none?!
+    # max_id = cur.fetchone()
+    # cur.execute('ALTER TABLE users AUTO_INCREMENT=?', (max_id,))
+    # con.commit()
