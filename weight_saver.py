@@ -15,7 +15,7 @@ def create_user():
 
 def update_weight(app_user):
     app_user.update_weight()
-    update(app_user)
+    update_user(app_user)
 
 
 def set_user():
@@ -54,7 +54,7 @@ print("Hello!")
 is_create_new_user = input("Create new user? Y/N ")
 if is_create_new_user.upper() == 'Y':
     user = create_user()
-    save(user)
+    save_user(user)
 else:
     user = set_user()
     print_weight_data(user)

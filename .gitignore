@@ -2,3 +2,4 @@ venv/
 .idea/
 weight_saver.db
 __pycache__/
+.pytest_cache/
