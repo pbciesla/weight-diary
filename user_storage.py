@@ -1,14 +1,17 @@
 import sqlite3
 from user import User
 
-con = sqlite3.connect('weight_saver.db')
 
-con.row_factory = sqlite3.Row
-
-cur = con.cursor()
+def connect_database():
+    connection = sqlite3.connect('weight_saver.db')
+    connection.row_factory = sqlite3.Row
+    return connection
 
 
 def fetch_all():
+    con = connect_database()
+    cur = con.cursor()
+
     users = []
     cur.execute('SELECT * FROM users')
     for user in cur.fetchall():
@@ -18,6 +21,9 @@ def fetch_all():
 
 
 def fetch_by_id(user_id):
+    con = connect_database()
+    cur = con.cursor()
+
     cur.execute('SELECT * FROM users WHERE id=?', (user_id,))
     user = cur.fetchone()
     if user:
@@ -27,6 +33,9 @@ def fetch_by_id(user_id):
 
 
 def fetch_by_name(user_name):
+    con = connect_database()
+    cur = con.cursor()
+
     cur.execute('SELECT * FROM users WHERE name=?', (user_name,))
     user = cur.fetchone()
     if user:
@@ -36,17 +45,33 @@ def fetch_by_name(user_name):
 
 
 def save_user(user):
+    con = connect_database()
+    cur = con.cursor()
+
     user_data = (user.name, user.height, user.weight)
     cur.execute('INSERT INTO users VALUES(NULL, ?, ?, ?);', user_data)
     con.commit()
+    cur.execute('SELECT id FROM users WHERE name=?', (user.name,))
+    user_id = cur.fetchone()['id']
+    return user_id
 
 
 def update_user(user):
-    cur.execute('UPDATE users SET weight=? WHERE id=?', (user.weight, user.id))
+    con = connect_database()
+    cur = con.cursor()
+
+    cur.execute('UPDATE users SET weight=?, height=? WHERE id=?',
+                (user.weight, user.height, user.id))
     con.commit()
+    new_user = fetch_by_id(user.id)
+    return new_user
+
 
 
 def delete_user(user_id):
+    con = connect_database()
+    cur = con.cursor()
+
     cur.execute('DELETE FROM users WHERE id=?', (user_id,))
     con.commit()
     # cur.execute('SELECT max(id) FROM  users')  # Why its return none?!
