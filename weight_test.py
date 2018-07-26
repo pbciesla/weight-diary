@@ -43,5 +43,3 @@ def test_delete_user():
     delete_user(test_user.id)
     user_from_database = fetch_by_id(test_user.id)
     assert user_from_database is None
-
-# TODO save_weight test

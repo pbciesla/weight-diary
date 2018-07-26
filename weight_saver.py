@@ -1,5 +1,6 @@
 from user_storage import *
 from weight_storage import *
+from weight_chart import render_chart
 
 
 def create_user():
@@ -14,7 +15,9 @@ def create_user():
 
 
 def update_weight(app_user):
-    app_user.update_weight()
+    new_weight = float(input("Enter your weight (in kg): "))
+    app_user.weight = new_weight
+    save_weight(new_weight, app_user.id)
     update_user(app_user)
 
 
@@ -25,9 +28,6 @@ def set_user():
         if app_user:
             return app_user
         else:
-            # is_create = input("This user is not exist. Do you want create new user (press C) or try again (press A)?")
-            # if is_create.upper() == 'C':
-            #     create_user()
             print("This user is not exist. Try again.")
 
 
@@ -58,6 +58,7 @@ if is_create_new_user.upper() == 'Y':
 else:
     user = set_user()
     print_weight_data(user)
+    render_chart(user)
     do_update = input("Do you want update your weight? Y/N ")
     if do_update.upper() == 'Y':
         update_weight(user)
