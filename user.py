@@ -11,9 +11,4 @@ class User:
 
     def __str__(self):
         return self.name + ', ' + str(self.height) + ' cm, ' + str(
-            self.weight) + ' kg' + 'id: ' + str(self.id)
-
-    def update_weight(self):
-        new_weight = float(input("Enter your weight (in kg): "))
-        self.weight = new_weight
-        save_weight(new_weight, self.id)
+            self.weight) + ' kg, ' + 'id: ' + str(self.id)
