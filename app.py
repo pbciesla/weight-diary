@@ -65,6 +65,17 @@ def delete_weight_by_id(user_id, weight_id):
         abort(404)
 
 
+@app.route('/users/<int:user_id>')
+def get_user(user_id):
+    user = fetch_by_id(user_id)
+    if user:
+        user_data = user.serialize()
+        user_data['bmi'] = user.calculate_bmi()
+        return jsonify(user_data)
+    else:
+        abort(404)
+
+
 @app.route('/users', methods=['POST'])
 def create_user():
     if not request.json or (

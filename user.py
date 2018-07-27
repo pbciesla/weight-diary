@@ -6,6 +6,19 @@ class User:
         if user_id:
             self.id = user_id
 
+    def calculate_bmi(self):
+        height_in_meters = self.height / 100
+        bmi = self.weight / (height_in_meters ** 2)
+        if bmi < 18.5:
+            bmi_meaning = 'underweight'
+        elif bmi < 25:
+            bmi_meaning = 'norm'
+        elif bmi < 30:
+            bmi_meaning = 'overweight'
+        else:
+            bmi_meaning = 'obesity'
+        return "{0:.2f}".format(bmi) + ': ' + bmi_meaning
+
     def serialize(self):
         return {
             'id': self.id,

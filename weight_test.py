@@ -297,3 +297,32 @@ def test_when_user_not_exist_delete_user_by_id_endpoint_should_return_return_404
     response = app.test_client().delete('/users/33')
     # then
     assert 404 == response.status_code
+
+
+def test_get_user_endpoint_should_return_200_status_code():
+    # when
+    response = app.test_client().get('/users/1')
+    # then
+    assert 200 == response.status_code
+
+
+def test_get_user_endpoint_should_return_json():
+    # when
+    response = app.test_client().get('/users/1')
+    # then
+    assert response.is_json
+
+
+def test_get_user_endpoint_should_return_calculate_bmi():
+    # when
+    response = app.test_client().get('/users/1')
+    # then
+    assert 'bmi' in response.get_json()
+    assert "23.30: norm" == response.get_json()['bmi']
+
+
+def test_when_user_not_exist_get_user_endpoint_should_return_return_404_error():
+    # when
+    response = app.test_client().get('/users/11')
+    # then
+    assert 404 == response.status_code
