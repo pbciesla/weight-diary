@@ -47,21 +47,21 @@ def print_users():
 def print_weight_data(app_user):
     weight_data = fetch_all_weight(app_user.id)
     for weight in weight_data:
-        print(weight[0] + ': ' + str(weight[1]) + ' kg')
+        print(weight['date'] + ': ' + str(weight['weight']) + ' kg')
 
 
 print("Hello!")
-is_create_new_user = input("Create new user? Y/N ")
-if is_create_new_user.upper() == 'Y':
-    user = create_user()
-    save_user(user)
-else:
-    user = set_user()
-    print_weight_data(user)
-    render_chart(user)
-    do_update = input("Do you want update your weight? Y/N ")
-    if do_update.upper() == 'Y':
-        update_weight(user)
-        print(user)
+# is_create_new_user = input("Create new user? Y/N ")
+# if is_create_new_user.upper() == 'Y':
+#     user = create_user()
+#     save_user(user)
+# else:
+user = set_user()
+print_weight_data(user)
+# render_chart(user)
+do_update = input("Do you want update your weight? Y/N ")
+if do_update.upper() == 'Y':
+    update_weight(user)
+    print(user)
 
 print("Thanks!")
