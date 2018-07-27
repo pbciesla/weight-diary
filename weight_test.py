@@ -183,11 +183,11 @@ def test_when_weight_id_not_exist_update_weight_by_id_endpoint_should_return_ret
     assert 404 == response.status_code
 
 
-def test_delete_weight_by_id_endpoint_should_return_200_status_code():
+def test_delete_weight_by_id_endpoint_should_return_204_status_code():
     # when
     response = app.test_client().delete('/2/weight/5')
     # then
-    assert 200 == response.status_code
+    assert 204 == response.status_code
 
 
 def test_delete_weight_by_id_endpoint_should_delete_weight():
@@ -277,11 +277,11 @@ def test_when_user_not_exist_update_user_by_id_endpoint_should_return_return_404
     assert 404 == response.status_code
 
 
-def test_delete_weight_by_id_endpoint_should_return_200_status_code():
+def test_delete_weight_by_id_endpoint_should_return_204_status_code():
     # when
     response = app.test_client().delete('/users/3')
     # then
-    assert 200 == response.status_code
+    assert 204 == response.status_code
 
 
 def test_delete_user_by_id_endpoint_should_delete_user():

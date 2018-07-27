@@ -59,7 +59,8 @@ def update_weight_by_id(user_id, weight_id):
 def delete_weight_by_id(user_id, weight_id):
     weight = fetch_weight_by_id(user_id, weight_id)
     if weight:
-        delete_weight(user_id, weight_id)
+        delete_weight(weight_id)
+        return Response(status=204)
     else:
         abort(404)
 
@@ -96,6 +97,7 @@ def delete_user_by_id(user_id):
     user = fetch_by_id(user_id)
     if user:
         delete_user(user_id)
+        return Response(status=204)
     else:
         abort(404)
 
